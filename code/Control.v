@@ -76,7 +76,7 @@ module Control(OpCode, Funct,
 		(OpCode == 6'h23)? 1:
 		(OpCode == 6'h2b)? 1:
 		(OpCode == 6'h08)? 1:
-		(OpCode == 6'h0c)? 1:
+		//(OpCode == 6'h0c)? 1:
 		(OpCode == 6'h0a)? 1:
 		(OpCode == 6'h04)? 1:
 		0;
