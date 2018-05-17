@@ -22,8 +22,8 @@ module Control(OpCode, Funct,
 	assign PCSrc = 
 		(OpCode == 6'h02)? 2'b01:
 		(OpCode == 6'h03)? 2'b01:
-		(Funct == 6'h08)? 2'b10:
-		(Funct == 6'h09)? 2'b10:
+		((Funct == 6'h08) && (OpCode == 6'h0))? 2'b10:
+		((Funct == 6'h09) && (OpCode == 6'h0))? 2'b10:
 		2'b00;
 	assign Branch = 
 		(OpCode == 6'h04)? 1:
@@ -32,7 +32,7 @@ module Control(OpCode, Funct,
 		(OpCode == 6'h2b)? 0:
 		(OpCode == 6'h04)? 0:
 		(OpCode == 6'h02)? 0:
-		(Funct == 6'h08)? 0:
+		((Funct == 6'h08) && (OpCode == 6'h0))? 0:
 		1;
 	assign RegDst = 
 		(OpCode == 6'h03)? 2'b10:
@@ -55,12 +55,12 @@ module Control(OpCode, Funct,
 	assign MemtoReg = 
 		(OpCode == 6'h23)? 2'b01:
 		(OpCode == 6'h03)? 2'b10:
-		(Funct == 6'h09)? 2'b10:
+		((Funct == 6'h09) && (OpCode == 6'h0))? 2'b10:
 		2'b00;
 	assign ALUSrc1 = 
-		(Funct == 6'h00)? 1:
-		(Funct == 6'h02)? 1:
-		(Funct == 6'h03)? 1:
+		((Funct == 6'h00) && (OpCode == 6'h0))? 1:
+		((Funct == 6'h02) && (OpCode == 6'h0))? 1:
+		((Funct == 6'h03) && (OpCode == 6'h0))? 1:
 		0;
 	assign ALUSrc2 = 
 		(OpCode == 6'h23)? 1:
